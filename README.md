@@ -6,6 +6,12 @@
 docker-compose up --build --force-recreate
 ```
 
+### Banco Mysql:
+localhost:3306
+user: root
+
+Rodar o script Configuracao_Ambiente_DML_DDL.sql
+
 ### Requisições:
 
 #### Retornar todos os carros:
