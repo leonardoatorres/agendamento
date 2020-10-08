@@ -6,6 +6,8 @@ br/com/latols/agendamento/service/CarService.class
 br/com/latols/agendamento/service/CalendarService.class
 br/com/latols/agendamento/controller/CalendarController.class
 br/com/latols/agendamento/repository/CalendarRepository.class
+br/com/latols/agendamento/controller/to/CavTO.class
+br/com/latols/agendamento/controller/to/CarTO.class
 br/com/latols/agendamento/entity/Cav.class
 br/com/latols/agendamento/controller/to/CalendarTO.class
 br/com/latols/agendamento/entity/Calendar.class

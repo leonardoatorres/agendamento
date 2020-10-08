@@ -2,8 +2,11 @@ package br.com.latols.agendamento.service;
 
 import br.com.latols.agendamento.controller.to.CalendarTO;
 import br.com.latols.agendamento.entity.Calendar;
+import br.com.latols.agendamento.entity.Car;
+import br.com.latols.agendamento.entity.Cav;
 import br.com.latols.agendamento.repository.CalendarRepository;
 import br.com.latols.agendamento.repository.CarRepository;
+import br.com.latols.agendamento.repository.CavRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -26,6 +29,9 @@ public class CalendarServiceTest {
     private CalendarRepository calendarRepository;
 
     @Mock
+    private CavRepository cavRepository;
+
+    @Mock
     private CarRepository carRepository;
 
     @Test
@@ -35,8 +41,11 @@ public class CalendarServiceTest {
         to.setCav("Botafogo");
         to.setDate(LocalDate.now());
         to.setTipo("inspection");
+        to.setHour(12);
         when(carRepository.selectIdCarPorNome(to.getCarro())).thenReturn(12);
         when(calendarRepository.selectDateAndCavAndHourAndTipo(eq(to.getDate()),eq(to.getCav()), eq(to.getHour()), eq(to.getTipo()))).thenReturn(Optional.empty());
+        when(cavRepository.selectCav(eq(to.getCav()))).thenReturn(Optional.of(new Cav()));
+        when(carRepository.selectCar(to.getCarro())).thenReturn(Optional.of(new Car()));
         calendarService.agendar(to);
         verify(calendarRepository, times(1)).save(any(Calendar.class));
     }

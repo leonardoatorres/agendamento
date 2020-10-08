@@ -19,9 +19,42 @@ Rodar o script Configuracao_Ambiente_DML_DDL.sql
 curl -i 'http://localhost:8080/car'
 ```
 
+#### Adicionar carro:
+```shell script
+curl -i -X POST 'http://localhost:8080/car' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "brand":"Ford",
+    "model":"Fiesta",
+    "cav":"Botafogo"
+}'
+```
+
+#### Remover carro:
+```shell script
+curl -i -X DELETE 'http://localhost:8080/car/{name}' \
+--header 'Content-Type: application/json'
+```
+
 #### Retornar todos os cavs:
 ```shell script
 curl -i 'http://localhost:8080/cav'
+```
+
+#### Adicionar cav:
+```shell script
+curl -i -X POST 'http://localhost:8080/cav' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"Copacabana"
+}'
+```
+
+#### Remover cav:
+```shell script
+curl -i -X POST 'http://localhost:8080/cav/{name}' \
+--header 'Content-Type: application/json'
+}'
 ```
 
 #### Retornar a agenda:

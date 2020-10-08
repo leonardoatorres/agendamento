@@ -1,16 +1,16 @@
 package br.com.latols.agendamento.controller;
 
 import br.com.latols.agendamento.controller.to.CalendarTO;
+import br.com.latols.agendamento.controller.to.CarTO;
+import br.com.latols.agendamento.controller.to.CavTO;
 import br.com.latols.agendamento.entity.Calendar;
 import br.com.latols.agendamento.entity.Car;
 import br.com.latols.agendamento.entity.Cav;
 import br.com.latols.agendamento.service.CalendarService;
 import br.com.latols.agendamento.service.CarService;
 import br.com.latols.agendamento.service.CavService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,23 +30,43 @@ public class CalendarController {
     }
 
     @GetMapping("/cav")
-    public List<Cav> findAllCavs() {
+    public ResponseEntity<List<Cav>> findAllCavs() {
         return cavService.getCavs();
     }
 
+    @PostMapping("/cav")
+    public ResponseEntity saveCav(@RequestBody CavTO cavTO) {
+        return cavService.adicionar(cavTO);
+    }
+
+    @DeleteMapping("/cav/{name}")
+    public ResponseEntity removeCav(@PathVariable String name) {
+        return cavService.remover(name);
+    }
+
     @GetMapping("/car")
-    public List<Car> findAllCars() {
+    public ResponseEntity<List<Car>> findAllCars() {
         return carService.getCars();
     }
 
+    @PostMapping("/car")
+    public ResponseEntity saveCav(@RequestBody CarTO carTO) {
+        return carService.adicionar(carTO);
+    }
+
+    @DeleteMapping("/car/{name}")
+    public ResponseEntity removeCar(@PathVariable String name) {
+        return carService.remover(name);
+    }
+
     @GetMapping("/calendar")
-    public List<Calendar> findAllCalendar() {
+    public ResponseEntity<List<Calendar>> findAllCalendar() {
         return calendarService.getCalendar();
     }
 
     @PostMapping("/calendar")
-    public void saveAgendamento(@RequestBody CalendarTO calendarTO) {
-        calendarService.agendar(calendarTO);
+    public ResponseEntity saveCalendar(@RequestBody CalendarTO calendarTO) {
+        return calendarService.agendar(calendarTO);
     }
 
 }
